@@ -1,0 +1,14 @@
+openpyxl
+reportlab
+tornado
+ldap3
+peewee
+requests
+marshmallow
+webargs
+simplejson
+torndb
+prettytable
+jsonschema
+PyMySQL
+MySQLdb
