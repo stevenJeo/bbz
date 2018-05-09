@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import ConfigParser
 import os
 import commands
+import ConfigParser
 
 hostname = commands.getoutput("hostname")
 if hostname == "prd":
@@ -35,8 +35,5 @@ def fetch_args(section):
         options[option] = option_value
     return options
 
-
 # if __name__ == '__main__':
 #     print(fetch_args("db").get("port"))
-
-

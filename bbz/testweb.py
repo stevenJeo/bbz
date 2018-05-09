@@ -2,7 +2,7 @@
 
 import tornado.ioloop
 import tornado.web
-from bbz.handler.UserHandler import UserHandler
+from bbz.handler.UserHandler import QueryUserHandler
 from tornado.routing import (
     RuleRouter,
     Rule,
@@ -42,7 +42,7 @@ def main():
     }
 
     application = Application([
-        (r"/test/user", UserHandler),
+        (r"/test/user", QueryUserHandler),
     ], **settings)
 
     router = RuleRouter(

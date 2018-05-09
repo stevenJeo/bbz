@@ -2,9 +2,11 @@
 
 from bbz.model.UserModel import UserModel
 from bbz.model.basemodel import database
+import simplejson
 
 
 class User(object):
+
     def __init__(self, body):
         self.__ldap_name = body.get('ldap_name')
         self.__user_name = body.get('user_name')
@@ -17,6 +19,9 @@ class User(object):
     # @database.atomic()
     @database.transaction()
     def _save(self):
+        with database.transaction() as tx:
+            tx.commit()
+            tx.rollback()
         UserModel.create(
             ldap_name=self.__ldap_name,
             user_name=self.__user_name,
@@ -27,19 +32,35 @@ class User(object):
             department=self.__department
         )
 
-    # @classmethod
-    # def _batch_save(cls, ):
-    #     UserModel.select()
+    @database.transaction()
+    def _save(self):
+        """
 
-    # 重写
-    def __dict__(self):
-        return {"ldap_name": self.__ldap_name,
-                "user_name": self.__user_name,
-                "emp_type": self.__emp_type,
-                "emp_number": self.__emp_number
-                }
+        """
 
-    # @classmethod
-    # def model2Bean(cls, *args):
-    #
-    #     return User("")
+    with database.transaction() as tx:
+        tx.commit()
+        tx.rollback()
+
+
+# @classmethod
+# def _batch_save(cls, ):
+#     UserModel.select()
+
+# 重写
+# def __dict__(self):
+#     return {"ldap_name": self.__ldap_name,
+#             "user_name": self.__user_name,
+#             "emp_type": self.__emp_type,
+#             "emp_number": self.__emp_number
+#             }
+
+
+# @classmethod
+# def model2Bean(cls, *args):
+#
+#     return User("")
+
+if __name__ == '__main__':
+    user = User({"ldap_name": "ldap_name", "user_name": "user_name"})
+    print simplejson.dumps(user)
