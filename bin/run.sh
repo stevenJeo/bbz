@@ -5,13 +5,17 @@ pwd
 host=`hostname`
 
 echo ${host}
+echo hostname=$(lsof)
+
+
 
 lsof -i:8888
+
 
 echo ""
 
 # awk中 NR行判断，print $2打印指定列
-port_info=lsof -i:8888 | awk '{if (NR>1){print NR " " $1 " " $2}}'
+port_info=`lsof -i:8888 | awk '{if (NR>1){print NR " " $1 " " $2}}'`
 
 echo ${port_info}
 

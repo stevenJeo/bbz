@@ -10,7 +10,7 @@ from peewee import (
 
 class UserModel(SafeModel):
     class Meta:
-        # db_table 已经被废弃
+        # db_table 属性已经被废弃
         db_table = "user"
         table_name = "user"
 

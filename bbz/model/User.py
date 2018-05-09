@@ -27,9 +27,9 @@ class User(object):
             department=self.__department
         )
 
-    @classmethod
-    def _batch_save(cls, ):
-        UserModel.select()
+    # @classmethod
+    # def _batch_save(cls, ):
+    #     UserModel.select()
 
     # 重写
     def __dict__(self):
